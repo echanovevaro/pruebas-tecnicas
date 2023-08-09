@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 
 export default function BooksDashboard({ books, findBookById }) {
@@ -20,3 +21,27 @@ export default function BooksDashboard({ books, findBookById }) {
 		</div>
 	)
 }
+=======
+import React from 'react'
+
+export default function BooksDashboard({ books, findBookById }) {
+	console.log('books db', books)
+
+	return (
+		<div className='item-a'>
+			<ul className='container-dash'>
+				{books.map((book) => (
+					<li
+						key={book.ISBN}
+						className='selected-book'
+						onClick={() => {
+							findBookById(book.ISBN)
+						}}>
+						<img src={book.cover} alt='cover-book' />
+					</li>
+				))}
+			</ul>
+		</div>
+	)
+}
+>>>>>>> af77d5ecb7900ebd365ccfefc7e6ff994b10751b

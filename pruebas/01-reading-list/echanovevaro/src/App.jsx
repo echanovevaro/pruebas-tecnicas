@@ -66,6 +66,7 @@ export default function App() {
 	}, [])
 	console.log('book', book)
 	return (
+<<<<<<< HEAD
 		<>
 			{!loadding && (
 				<div className='container'>
@@ -84,5 +85,21 @@ export default function App() {
 				</div>
 			)}
 		</>
+=======
+		<div className='container'>
+			<Header />
+			<BooksDashboard books={books} findBookById={findBookById} />
+			{book && (
+				<BookDetail
+					book={book}
+					bookReaded={addBookToListReaded}
+					bookToRead={addBookToListToRead}
+				/>
+			)}
+			{(readed || toRead) && (
+				<BooksList readed={readed} toRead={toRead} findBookById={findBookById} />
+			)}
+		</div>
+>>>>>>> af77d5ecb7900ebd365ccfefc7e6ff994b10751b
 	)
 }
