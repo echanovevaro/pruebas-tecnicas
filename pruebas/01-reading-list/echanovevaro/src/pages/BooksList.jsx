@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react'
 
 export default function BooksList(props) {
@@ -6,7 +5,7 @@ export default function BooksList(props) {
 		<div className='item-d'>
 			{props.readed && props.readed.length > 0 && (
 				<>
-					<p>books that I have read</p>
+					<p>{'books that I have read'.toUpperCase()}</p>
 					<div className='hr' />
 					<ul className='container-dash'>
 						{props.readed.map((book) => (
@@ -24,7 +23,7 @@ export default function BooksList(props) {
 			)}
 			{props.toRead && props.toRead.length > 0 && (
 				<>
-					<p>books i want to read</p>
+					<p>{'books i want to readd'.toUpperCase()}</p>
 					<div className='hr' />
 					<ul className='container-dash'>
 						{props.toRead.map((book) => (
@@ -43,49 +42,3 @@ export default function BooksList(props) {
 		</div>
 	)
 }
-=======
-import React from 'react'
-
-export default function BooksList(props) {
-	return (
-		<div className='item-d'>
-			{props.readed && props.readed.length > 0 && (
-				<>
-					<p>books that I have read</p>
-					<div className='hr' />
-					<ul className='container-dash'>
-						{props.readed.map((book) => (
-							<li
-								key={book.ISBN}
-								className='selected-book'
-								onClick={() => {
-									props.findBookById(book.ISBN)
-								}}>
-								<img src={book.cover} alt='cover-book' />
-							</li>
-						))}
-					</ul>
-				</>
-			)}
-			{props.toRead && props.toRead.length > 0 && (
-				<>
-					<p>books i want to read</p>
-					<div className='hr' />
-					<ul className='container-dash'>
-						{props.toRead.map((book) => (
-							<li
-								key={book.ISBN}
-								className='selected-book'
-								onClick={() => {
-									props.findBookById(book.ISBN)
-								}}>
-								<img src={book.cover} alt='cover-book' />
-							</li>
-						))}
-					</ul>
-				</>
-			)}
-		</div>
-	)
-}
->>>>>>> af77d5ecb7900ebd365ccfefc7e6ff994b10751b

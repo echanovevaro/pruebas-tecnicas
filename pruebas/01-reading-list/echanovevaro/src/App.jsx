@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { library } from '../../../books.json'
+import { library } from '../../books.json'
 import './index.css'
 import BooksDashboard from './pages/BooksDashboard'
 import BookDetail from './pages/BookDetail'
@@ -8,15 +8,17 @@ import BooksList from './pages/BooksList'
 
 export default function App() {
 	const [books, setBooks] = useState([])
+	const [filteredBooks, setFilteredBooks] = useState([])
 	const [loadding, setLoadding] = useState(true)
 	const [book, setBook] = useState()
 	const [readed, setReaded] = useState([])
 	const [toRead, setToRead] = useState([])
 
+	// const [fiLteredBooks, setFiLteredBooks] = useState([])
+
 	function addBookToListToRead(id) {
 		if (!toRead.some((b) => b.ISBN === id)) {
 			let bookById = findBookById(id)
-			console.log('bookById', bookById)
 			if (bookById) {
 				setToRead((prev) => [...prev, bookById])
 				setBooks((prev) => prev.filter((b) => b.ISBN !== book.ISBN))
@@ -38,10 +40,13 @@ export default function App() {
 		}
 	}
 
+	function fiLterBooksByGenre(selectedValue) {
+		setFilteredBooks(books.filter((b) => b.genre == selectedValue))
+	}
+
 	function findBookById(id) {
-		console.log('id', id)
 		let bookById = [...books, ...readed, ...toRead].find((b) => b.ISBN == id)
-		console.log(bookById)
+
 		setBook(bookById)
 		return bookById
 	}
@@ -64,14 +69,18 @@ export default function App() {
 		}
 		startBooks()
 	}, [])
-	console.log('book', book)
+
 	return (
-<<<<<<< HEAD
 		<>
 			{!loadding && (
 				<div className='container'>
-					<Header />
-					<BooksDashboard books={books} findBookById={findBookById} />
+					<Header fiLterBooksByGenre={fiLterBooksByGenre} />
+					{filteredBooks.length === 0 ? (
+						<BooksDashboard books={books} findBookById={findBookById} />
+					) : (
+						<BooksDashboard books={filteredBooks} findBookById={findBookById} />
+					)}
+
 					{book && (
 						<BookDetail
 							book={book}
@@ -85,21 +94,5 @@ export default function App() {
 				</div>
 			)}
 		</>
-=======
-		<div className='container'>
-			<Header />
-			<BooksDashboard books={books} findBookById={findBookById} />
-			{book && (
-				<BookDetail
-					book={book}
-					bookReaded={addBookToListReaded}
-					bookToRead={addBookToListToRead}
-				/>
-			)}
-			{(readed || toRead) && (
-				<BooksList readed={readed} toRead={toRead} findBookById={findBookById} />
-			)}
-		</div>
->>>>>>> af77d5ecb7900ebd365ccfefc7e6ff994b10751b
 	)
 }

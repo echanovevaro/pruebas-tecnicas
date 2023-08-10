@@ -1,0 +1,27 @@
+select {
+	/* Personalize */
+	border: none;
+	flex: 1;
+	padding: 0 1em;
+	cursor: pointer;
+	border-radius: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+	display: none;
+}
+/* Custom Select wrapper */
+.select {
+	display: flex;
+	width: 25em;
+	height: 2.5rem;
+	border-radius: 0.1em;
+}
+
+/* Other styles*/
+
+a {
+	font-weight: 100;
+	padding: 0.25em;
+	border-radius: 0.05em;
+}
