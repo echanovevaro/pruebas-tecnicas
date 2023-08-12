@@ -1,9 +1,14 @@
 import React from 'react'
 import { AddToListReaded, AddToListToRead } from '../components/Icons'
 
-export default function BookDetail({ book, bookReaded, bookToRead }) {
-	console.log('book,', book)
-
+export default function BookDetail({
+	book,
+	toogleToReadBook,
+	toogleReadedBook,
+	checkedReaded,
+	checkedToRead,
+}) {
+	console.log('checkedReaded,', checkedReaded)
 	return (
 		<>
 			<div className='item-a'>
@@ -11,11 +16,15 @@ export default function BookDetail({ book, bookReaded, bookToRead }) {
 					<img src={book?.cover} alt='cover-book' />
 					<div className='detail-card'>
 						<div className='detail-buttons'>
-							<button onClick={() => bookReaded(book.ISBN)}>
+							<button
+								className={checkedReaded ? 'checkedAtList' : ''}
+								onClick={() => toogleReadedBook(book.ISBN)}>
 								<AddToListReaded />
 							</button>
 
-							<button onClick={() => bookToRead(book.ISBN)}>
+							<button
+								className={checkedToRead ? 'checkedAtList' : ''}
+								onClick={() => toogleToReadBook(book.ISBN)}>
 								<AddToListToRead />
 							</button>
 						</div>

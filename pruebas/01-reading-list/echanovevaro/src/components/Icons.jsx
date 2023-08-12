@@ -7,7 +7,7 @@ export function AddToListReaded() {
 			xmlns='http://www.w3.org/2000/svg'
 			fill='black'
 			stroke='#ffff'
-			stroke-width='3'>
+			strokeWidth='3'>
 			<circle cx='32' cy='32' r='24' />
 			<polyline points='44 24 28 40 20 32' />
 		</svg>
@@ -22,7 +22,7 @@ export function AddToListToRead() {
 			xmlns='http://www.w3.org/2000/svg'
 			fill='black'
 			stroke='#ffff'
-			stroke-width='3'>
+			strokeWidth='3'>
 			<line x1='20' y1='16' x2='56' y2='16' />
 			<line x1='20' y1='32' x2='56' y2='32' />
 			<line x1='20' y1='48' x2='56' y2='48' />

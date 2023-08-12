@@ -13,7 +13,7 @@ export default function BooksList(props) {
 								key={book.ISBN}
 								className='selected-book'
 								onClick={() => {
-									props.findBookById(book.ISBN)
+									props.findReadedById(book.ISBN)
 								}}>
 								<img src={book.cover} alt='cover-book' />
 							</li>
@@ -23,7 +23,7 @@ export default function BooksList(props) {
 			)}
 			{props.toRead && props.toRead.length > 0 && (
 				<>
-					<p>{'books i want to readd'.toUpperCase()}</p>
+					<p>{'books i want to read'.toUpperCase()}</p>
 					<div className='hr' />
 					<ul className='container-dash'>
 						{props.toRead.map((book) => (
@@ -31,7 +31,7 @@ export default function BooksList(props) {
 								key={book.ISBN}
 								className='selected-book'
 								onClick={() => {
-									props.findBookById(book.ISBN)
+									props.findToReadById(book.ISBN)
 								}}>
 								<img src={book.cover} alt='cover-book' />
 							</li>

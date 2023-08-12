@@ -121,8 +121,9 @@ svg {
 	margin-top: 2rem;
 	margin-right: 2rem;
 	position: fixed;
-	box-shadow: 0px 3px 15px rgba(255, 255, 255, 0.151);
 	padding: 1rem;
+	border-top: 0.5px solid #ffffff29;
+	border-left: 0.5px solid #ffffff29;
 	justify-items: start;
 	gap: 0.2rem;
 }
@@ -154,25 +155,6 @@ svg {
 	cursor: pointer;
 	overflow: hidden;
 	outline: none;
-
-	--b: 0.1em; /* the thickness of the line */
-	--c: #d3d3d3; /* the color */
-
-	color: #0000;
-	padding-block: var(--b);
-	background: linear-gradient(var(--c) 50%, #000 0) 0% calc(100% - var(--_p, 0%)) /
-			100% 200%,
-		linear-gradient(var(--c) 0 0) 0% var(--_p, 0%) / var(--_p, 0%) var(--b)
-			no-repeat;
-	-webkit-background-clip: text, padding-box;
-	background-clip: text, padding-box;
-	transition: 0.3s var(--_s, 0s) linear,
-		background-size 0.3s calc(0.3s - var(--_s, 0s));
-}
-.detail-buttons button:hover {
-	--_p: 100%;
-	--_s: 0.3s;
-	display: unset;
 }
 .header {
 	position: fixed;
@@ -218,4 +200,8 @@ img {
 	display: block;
 	height: 1px;
 	background-color: rgb(255 255 255 / 0.2);
+}
+
+.detail-buttons .checkedAtList {
+	background-color: rgba(110, 110, 110, 0.484);
 }
