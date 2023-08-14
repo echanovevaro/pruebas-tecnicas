@@ -1,39 +1,39 @@
 import React from 'react'
 
-export default function BooksList(props) {
+export default function BooksList({ findBookById, booksReaded, booksToRead }) {
 	return (
 		<div className='item-d'>
-			{props.readed && props.readed.length > 0 && (
+			{booksReaded && booksReaded.length > 0 && (
 				<>
 					<p>{'books that I have read'.toUpperCase()}</p>
 					<div className='hr' />
 					<ul className='container-dash'>
-						{props.readed.map((book) => (
+						{booksReaded.map((b) => (
 							<li
-								key={book.ISBN}
+								key={b.book.ISBN}
 								className='selected-book'
 								onClick={() => {
-									props.findReadedById(book.ISBN)
+									findBookById(b.book.ISBN)
 								}}>
-								<img src={book.cover} alt='cover-book' />
+								<img src={b.book.cover} alt='cover-book' />
 							</li>
 						))}
 					</ul>
 				</>
 			)}
-			{props.toRead && props.toRead.length > 0 && (
+			{booksToRead && booksToRead.length > 0 && (
 				<>
 					<p>{'books i want to read'.toUpperCase()}</p>
 					<div className='hr' />
 					<ul className='container-dash'>
-						{props.toRead.map((book) => (
+						{booksToRead.map((b) => (
 							<li
-								key={book.ISBN}
+								key={b.book.ISBN}
 								className='selected-book'
 								onClick={() => {
-									props.findToReadById(book.ISBN)
+									findBookById(b.book.ISBN)
 								}}>
-								<img src={book.cover} alt='cover-book' />
+								<img src={b.book.cover} alt='cover-book' />
 							</li>
 						))}
 					</ul>

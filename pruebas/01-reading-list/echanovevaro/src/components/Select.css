@@ -15,13 +15,8 @@ select::-ms-expand {
 	display: flex;
 	width: 25em;
 	height: 2.5rem;
-	border-radius: 0.1em;
+	border-radius: 2px;
+	gap: 3rem;
 }
 
 /* Other styles*/
-
-a {
-	font-weight: 100;
-	padding: 0.25em;
-	border-radius: 0.05em;
-}

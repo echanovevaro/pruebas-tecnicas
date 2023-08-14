@@ -1,14 +1,9 @@
 import React from 'react'
 import { AddToListReaded, AddToListToRead } from '../components/Icons'
 
-export default function BookDetail({
-	book,
-	toogleToReadBook,
-	toogleReadedBook,
-	checkedReaded,
-	checkedToRead,
-}) {
-	console.log('checkedReaded,', checkedReaded)
+export default function BookDetail({ bookObj, toggleBook }) {
+	const { book, readed, toRead } = { ...bookObj }
+
 	return (
 		<>
 			<div className='item-a'>
@@ -17,14 +12,20 @@ export default function BookDetail({
 					<div className='detail-card'>
 						<div className='detail-buttons'>
 							<button
-								className={checkedReaded ? 'checkedAtList' : ''}
-								onClick={() => toogleReadedBook(book.ISBN)}>
+								className={`toggle--button  ${bookObj.readed ? 'checkedAtList' : ''} `}
+								title={`${readed ? 'discard ' : 'books readed'}`}
+								onClick={() =>
+									toggleBook({ ...bookObj, readed: !bookObj.readed, toRead: false })
+								}>
 								<AddToListReaded />
 							</button>
 
 							<button
-								className={checkedToRead ? 'checkedAtList' : ''}
-								onClick={() => toogleToReadBook(book.ISBN)}>
+								className={`toggle--button  ${bookObj.toRead ? 'checkedAtList' : ''}`}
+								title={`${toRead ? 'discard ' : 'books to read'}`}
+								onClick={() =>
+									toggleBook({ ...bookObj, readed: false, toRead: !bookObj.toRead })
+								}>
 								<AddToListToRead />
 							</button>
 						</div>
@@ -33,19 +34,19 @@ export default function BookDetail({
 						</div>
 						<p>ISBN: {book?.ISBN}</p>
 						<p>
-							Autor: <span>{book?.author?.name}</span>
+							Author: <span>{book?.author?.name}</span>
 						</p>
 						<p>
 							synopsis: <span>{book?.synopsis}</span>
 						</p>
 						<p>
-							Género: <span>{book?.genre}</span>
+							Genre: <span>{book?.genre}</span>
 						</p>
 						<p>
-							Páginas: <span>{book?.pages}</span>
+							Pages: <span>{book?.pages}</span>
 						</p>
 						<p>
-							Año: <span>{book?.year}</span>
+							Year: <span>{book?.year}</span>
 						</p>
 					</div>
 				</div>

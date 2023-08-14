@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import './Select.css'
-export default function Select({ fiLterBooksByGenre }) {
+
+export function Select({ fiLterBooksByGenre }) {
 	const [selectedValue, setSelectedValue] = useState('all books')
 
 	function handleChange(event) {
-		fiLterBooksByGenre(event.target.value)
-		setSelectedValue(event.target.value)
+		const { value } = event.target
+		fiLterBooksByGenre(value)
+		setSelectedValue(value)
 	}
+
 	return (
 		<div className='select'>
 			<select value={selectedValue} onChange={handleChange} required>
