@@ -8,12 +8,24 @@ import BooksList from './pages/BooksList'
 
 export default function App() {
 	const [books, setBooks] = useState([])
-
-	const [filteredBooks, setFilteredBooks] = useState([])
+	const [genre, setGenre] = useState('all books')
+	const [search, setSearch] = useState(false)
 	const [loading, setLoading] = useState(true)
 	const [book, setBook] = useState()
 
-	console.log('filteredBooks', filteredBooks)
+	const [pages, setPages] = useState(1400)
+	console.log('pages', pages)
+
+	const handlePageChange = (num) => {
+		console.log('Entra page', num)
+		setPages(num)
+	}
+
+	const handleGenreSelect = (value) => {
+		setGenre(value)
+	}
+
+	// console.log('filteredBooks', filteredBooks)
 
 	// function toggleReadedBook(id) {
 	// 	let readedByIdFunc = findReadedById(id)
@@ -44,15 +56,13 @@ export default function App() {
 	// 	}
 	// }
 
-	function fiLterBooksByGenre(selectedValue) {
-		setFilteredBooks(books.filter((b) => b.book.genre == selectedValue))
-	}
+	// function fiLterBooksByGenre(selectedValue) {
+	// 	setBooks((prev) =>)
+	// }
 
-	function fiLterBooksByPages(number) {
-		!filteredBooks || filteredBooks.length === 0
-			? setBooks(books.filter((b) => b.book.pages < number))
-			: setFilteredBooks(filteredBooks.filter((b) => b.book.pages < number))
-	}
+	// function fiLterBooksByPages(number) {
+	// 	setBooks(books.filter((b) => b.book.pages number))
+	// }
 
 	function toggleBook(book) {
 		let nextBooks = books.filter((b) => b.book.ISBN !== book.book.ISBN)
@@ -108,6 +118,10 @@ export default function App() {
 	// 		return findInAllBooksById
 	// 	}
 	// }
+	function searchToggleSelect() {
+		console.log('click')
+		setSearch((prev) => !prev)
+	}
 
 	async function getBooks() {
 		return new Promise((resolve) => {
@@ -137,14 +151,24 @@ export default function App() {
 			{!loading && (
 				<div className='container'>
 					<Header
-						fiLterBooksByPages={fiLterBooksByPages}
-						fiLterBooksByGenre={fiLterBooksByGenre}
+						genre={genre}
+						pages={pages}
+						handlePageChange={handlePageChange}
+						handleGenreSelect={handleGenreSelect}
+						onSearch={searchToggleSelect}
+						search={search}
 					/>
-					{filteredBooks.length === 0 ? (
-						<BooksDashboard books={books} findBookById={findBookById} />
-					) : (
-						<BooksDashboard books={filteredBooks} findBookById={findBookById} />
-					)}
+
+					<BooksDashboard
+						books={
+							genre === 'all books'
+								? books.filter((b) => b.book.pages <= pages)
+								: books
+										.filter((b) => b.book.genre === genre)
+										.filter((b) => b.book.pages <= pages)
+						}
+						findBookById={findBookById}
+					/>
 
 					{book && <BookDetail bookObj={book} toggleBook={toggleBook} />}
 					{books && (
