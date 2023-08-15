@@ -142,7 +142,6 @@ svg {
 	display: flex;
 	padding-bottom: 1rem;
 	justify-content: flex-start;
-	gap: 1rem;
 }
 
 .container-det img {
@@ -153,14 +152,15 @@ svg {
 	font-weight: lighter;
 }
 .detail-buttons button {
-	background-color: transparent;
-	background-repeat: no-repeat;
-	border: none;
+	/* background-color: transparent;
+	background-repeat: no-repeat;*/
 	cursor: pointer;
-	overflow: hidden;
-	outline: none;
+	border-radius: 3px;
+	background: #333;
+	/* overflow: hidden;
+	
 	filter: opacity(0.7);
-	transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out; */
 }
 .header {
 	position: fixed;
@@ -218,13 +218,9 @@ img {
 	background-color: rgb(255 255 255 / 0.2);
 }
 
-.toggle--button.checkedAtList:active {
-	filter: brightness(0.2);
-	transition: all 0.4s ease-in-out;
-}
-
-.toggle--button:hover:enabled {
-	filter: opacity(1.5);
+.checkedAtList {
+	border-style: inset;
+	/* outline: none; */
 }
 
 /* select */

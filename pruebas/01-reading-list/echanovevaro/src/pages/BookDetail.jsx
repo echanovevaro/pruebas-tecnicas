@@ -12,7 +12,7 @@ export default function BookDetail({ bookObj, toggleBook }) {
 					<div className='detail-card'>
 						<div className='detail-buttons'>
 							<button
-								className={`toggle--button  ${bookObj.readed ? 'checkedAtList' : ''} `}
+								className={`${bookObj.readed ? 'checkedAtList' : ''} `}
 								title={`${readed ? 'discard ' : 'books readed'}`}
 								onClick={() =>
 									toggleBook({ ...bookObj, readed: !bookObj.readed, toRead: false })
@@ -21,7 +21,7 @@ export default function BookDetail({ bookObj, toggleBook }) {
 							</button>
 
 							<button
-								className={`toggle--button  ${bookObj.toRead ? 'checkedAtList' : ''}`}
+								className={`${bookObj.toRead ? 'checkedAtList' : ''}`}
 								title={`${toRead ? 'discard ' : 'books to read'}`}
 								onClick={() =>
 									toggleBook({ ...bookObj, readed: false, toRead: !bookObj.toRead })
