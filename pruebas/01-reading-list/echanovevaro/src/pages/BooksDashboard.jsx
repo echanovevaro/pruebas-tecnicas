@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function BooksDashboard({ books, findBookById }) {
+export default function BooksDashboard({ books, findBookById, pages }) {
 	console.log('books db', books)
 
 	return (
@@ -10,7 +10,7 @@ export default function BooksDashboard({ books, findBookById }) {
 					.filter((b) => !b.readed && !b.toRead)
 					.map((b) => (
 						<li
-							key={b.book.ISBN}
+							key={b?.book.ISBN}
 							className='selected-book'
 							onClick={() => {
 								findBookById(b.book.ISBN)
@@ -19,7 +19,8 @@ export default function BooksDashboard({ books, findBookById }) {
 						</li>
 					))}
 			</ul>
-			<span>Resultados: {books.length}</span>
+
+			<h4>Resultados: {books.length}</h4>
 		</div>
 	)
 }
