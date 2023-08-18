@@ -9,19 +9,48 @@ import BooksList from './pages/BooksList'
 export default function App() {
 	const [books, setBooks] = useState([])
 	const [genre, setGenre] = useState('all books')
-	const [search, setSearch] = useState(false)
 	const [loading, setLoading] = useState(true)
 	const [book, setBook] = useState()
-
+	const [searchInput, setSearchInput] = useState('')
 	const [pages, setPages] = useState(1400)
-	console.log('pages', pages)
+
+	console.log('searchInput', searchInput)
+
+	const getGenres = () => {
+		return [...new Set(books.map((b) => b.book.genre))]
+	}
+
+	const handleSearchValeChange = (e) => {
+		const { value } = e.target
+		e.preventDefault()
+		setSearchInput(value)
+	}
 
 	const handlePageChange = (num) => {
 		setPages(num)
 	}
 
-	const handleGenreSelect = (value) => {
+	const handleGenreSelect = (e) => {
+		console.log('entra', e.target.value)
+		const { value } = e.target
+		e.preventDefault()
 		setGenre(value)
+	}
+
+	const applyFilters = () => {
+		let filtered = [...books]
+		if (searchInput && searchInput.length > 2) {
+			filtered = filtered.filter((b) =>
+				b.book.title.toLowerCase().includes(searchInput.toLowerCase()),
+			)
+		}
+		if (genre !== 'all books') {
+			filtered = filtered.filter((b) => b.book.genre == genre)
+		}
+		if (pages <= 1400) {
+			filtered = filtered.filter((b) => b.book.pages <= pages)
+		}
+		return filtered
 	}
 
 	function toggleBook(book) {
@@ -30,17 +59,11 @@ export default function App() {
 		setBook(undefined)
 	}
 
-	console.log('books', books)
-
 	function findBookById(id) {
 		let bookById = books.find((b) => b.book.ISBN == id)
 		if (bookById) {
 			setBook(bookById)
 		}
-	}
-
-	function searchToggleSelect() {
-		setSearch((prev) => !prev)
 	}
 
 	async function getBooks() {
@@ -73,21 +96,15 @@ export default function App() {
 					<Header
 						genre={genre}
 						pages={pages}
-						books={books}
 						handlePageChange={handlePageChange}
 						handleGenreSelect={handleGenreSelect}
-						onSearch={searchToggleSelect}
-						search={search}
+						searchInput={searchInput}
+						handleSearchValeChange={handleSearchValeChange}
+						genres={getGenres()}
 					/>
 
 					<BooksDashboard
-						books={
-							genre === 'all books'
-								? books.filter((b) => b.book.pages <= pages)
-								: books
-										.filter((b) => b.book.genre === genre)
-										.filter((b) => b.book.pages <= pages)
-						}
+						books={applyFilters()}
 						findBookById={findBookById}
 						pages={pages}
 					/>

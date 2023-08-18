@@ -49,22 +49,22 @@ p,
 span {
 	font-family: var(--font);
 	font-weight: 200;
-	font-size: 1.2rem;
+	font-size: 0.9rem;
 }
 h1 {
 	font-size: 2rem;
 	font-weight: 300;
 }
 h2 {
-	font-size: 1.4rem;
+	font-size: 1.1rem;
 	font-weight: 300;
 }
 h4 {
-	font-size: 1.3rem;
+	font-size: 1.2rem;
 	font-weight: 200;
 }
 h3 {
-	font-size: 1.7rem;
+	font-size: 1.5rem;
 	font-weight: 300;
 }
 textarea,
@@ -189,7 +189,7 @@ svg {
 	padding: 1rem;
 	z-index: 100;
 	background-color: #000000d0;
-	padding-top: 4rem;
+	padding-top: 2rem;
 	padding-right: 6rem;
 
 	padding-left: 6rem;
@@ -202,7 +202,7 @@ nav {
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: baseline;
-	gap: 1rem;
+	gap: 2rem;
 }
 nav ul li {
 	padding: 0.5rem 0;
@@ -221,7 +221,13 @@ nav ul li {
 	color: rgba(255, 255, 255, 0.909);
 	font-family: var(--font);
 	font-size: 1.3rem;
-	font-weight: 200;
+	font-weight: 300;
+}
+.searcher input::-webkit-textfield-decoration-container {
+	color: rgba(255, 255, 255, 0.909);
+	font-family: var(--font) !important;
+	font-size: 1.3rem;
+	font-weight: 300;
 }
 
 input:-webkit-autofill {

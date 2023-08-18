@@ -7,12 +7,13 @@ export default function Header({
 	pages,
 	handlePageChange,
 	handleGenreSelect,
-	books,
-	onSearch,
-	search,
+	handleSearchValeChange,
+	searchInput,
+	genres,
 }) {
-	console.log('booksHeader', books)
-	let filteredGenre = books.map((b) => b.book.genre)
+	// console.log('uniqueGenres(books)', uniqueGenres())
+	// console.log('applyFilters', applyFilters)
+
 	return (
 		<div className='header-container header'>
 			<nav>
@@ -20,25 +21,24 @@ export default function Header({
 				<ul>
 					<div className='search-books'>
 						{/* <SearchIcon /> */}
-						<Searcher />
+						<Searcher
+							handleSearchValeChange={handleSearchValeChange}
+							searchInput={searchInput}
+						/>
 					</div>
 					<li>
 						<div className='select'>
-							<select
-								value={genre}
-								onChange={(e) => handleGenreSelect(e.target.value)}>
-								<option className='customValue' value='all books' selected='selected'>
+							<select value={genre} onChange={(e) => handleGenreSelect(e)}>
+								<option className='customValue' value='all books'>
 									all books
 								</option>
-								{filteredGenre
-									.filter((b, i) => filteredGenre.indexOf(b) === i)
-									.map((g) => {
-										return (
-											<option className='customValue' value={`${g.toString()}`}>
-												{g}
-											</option>
-										)
-									})}
+								{genres.map((g) => {
+									return (
+										<option className='customValue' key={g} value={g}>
+											{g}
+										</option>
+									)
+								})}
 							</select>
 						</div>
 					</li>
@@ -59,43 +59,3 @@ export default function Header({
 		</div>
 	)
 }
-
-/* <select
-value={genre}
-onChange={(e) => handleGenreSelect(e.target.value)}>
-{books.map((b) =>{ 
-	return <option className='customValue' genre={`${b.book.genre}`} value={genre.value}}>
-			{b.book.genre}
-			 </option>
-
-	
-})} */
-
-// {/* <option className='customValue' value='all books'>
-// 	all books
-// </option>
-// <option className='customValue' value='Realismo mágico'>
-// 	Realismo mágico
-// </option>
-// <option className='customValue' value='Terror'>
-// 	Terror
-// </option>
-// <option className='customValue' value='Ciencia ficción'>
-// 	Ciencia ficción
-// </option>
-// <option className='customValue' value='Zombies'>
-// 	Zombies
-// </option>
-// <option className='customValue' value='Fantasía'>
-// 	Fantasía
-// </option>
-// <option className='customValue' value='Novela romántica'>
-// 	Novela romántica
-// </option>
-// <option className='customValue' value='Ficción clásica'>
-// 	Ficción clásica
-// </option>
-// <option className='customValue' value='Novela picaresca'>
-// 	Novela picaresca
-// </option> */}
-// </select>

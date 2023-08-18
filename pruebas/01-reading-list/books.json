@@ -171,21 +171,6 @@
 
 		{
 			"book": {
-				"title": "Georges",
-				"pages": 1843,
-				"genre": "Ficción",
-				"cover": "https://porrua.mx/media/catalog/product/imp/ort/l9789700775005.jpg?quality=80&bg-color=255,255,255&height=525&width=350&canvas=350:525",
-				"synopsis": "Georges es hijo de un mulato adinerado, natural de la Ile de France (hoy Mauricio), con una tez tan clara que podría pasar por blanco.",
-				"year": 472,
-				"ISBN": "978-8419311276",
-				"author": {
-					"name": "Alexandre Dumas",
-					"otherBooks": ["Los tres mosqueteros", "Amaury"]
-				}
-			}
-		},
-		{
-			"book": {
 				"title": "La juguetería mágica",
 				"pages": 224,
 				"genre": "Ficción",
