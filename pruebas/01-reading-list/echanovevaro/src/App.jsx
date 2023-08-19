@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { library } from '../../books.json'
 import './index.css'
 import BooksDashboard from './pages/BooksDashboard'
@@ -13,6 +13,22 @@ export default function App() {
 	const [book, setBook] = useState()
 	const [searchInput, setSearchInput] = useState('')
 	const [pages, setPages] = useState(1400)
+
+	const aboutRef = useRef()
+	const scrollCallback = () => {
+		if (aboutRef && !aboutRef?.current?.contains(document.activeElement)) {
+			aboutRef.current.scrollIntoView({
+				block: 'end',
+				behavior: 'smooth',
+				inline: 'end',
+			})
+		}
+	}
+	useEffect(() => {
+		if (toggleBook && aboutRef?.current) {
+			scrollCallback()
+		}
+	}, [toggleBook])
 
 	console.log('searchInput', searchInput)
 
@@ -109,12 +125,19 @@ export default function App() {
 						pages={pages}
 					/>
 
-					{book && <BookDetail bookObj={book} toggleBook={toggleBook} />}
+					{book && (
+						<BookDetail
+							bookObj={book}
+							toggleBook={toggleBook}
+							scrollCallback={scrollCallback}
+						/>
+					)}
 					{books && (
 						<BooksList
 							findBookById={findBookById}
 							booksReaded={books.filter((b) => b.readed)}
 							booksToRead={books.filter((b) => b.toRead)}
+							refProps={aboutRef}
 						/>
 					)}
 				</div>

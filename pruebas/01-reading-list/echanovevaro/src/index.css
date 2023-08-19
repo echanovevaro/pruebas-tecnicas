@@ -216,6 +216,7 @@ nav ul li {
 	border: none;
 	outline: none !important ;
 	margin-bottom: 10px;
+	font-weight: 200;
 }
 .searcher input::placeholder {
 	color: rgba(255, 255, 255, 0.909);
@@ -228,6 +229,15 @@ nav ul li {
 	font-family: var(--font) !important;
 	font-size: 1.3rem;
 	font-weight: 300;
+}
+.searcher input[type='search' i]::-webkit-search-cancel-button {
+	-webkit-appearance: none;
+	height: 13px;
+	width: 13px;
+	background-image: url(/src/assets/delete-button-svgrepo-com.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	padding: 1px;
 }
 
 input:-webkit-autofill {

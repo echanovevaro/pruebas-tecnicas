@@ -1,7 +1,7 @@
 import React from 'react'
 import { AddToListReaded, AddToListToRead } from '../components/Icons'
 
-export default function BookDetail({ bookObj, toggleBook }) {
+export default function BookDetail({ bookObj, toggleBook, scrollCallback }) {
 	const { book, readed, toRead } = { ...bookObj }
 
 	return (
@@ -17,18 +17,20 @@ export default function BookDetail({ bookObj, toggleBook }) {
 								<button
 									className={`${bookObj.readed ? 'checkedAtList' : ''} `}
 									title={`${readed ? 'discard ' : 'books readed'}`}
-									onClick={() =>
+									onClick={() => {
 										toggleBook({ ...bookObj, readed: !bookObj.readed, toRead: false })
-									}>
+										scrollCallback()
+									}}>
 									<AddToListReaded />
 								</button>
 
 								<button
 									className={`${bookObj.toRead ? 'checkedAtList' : ''}`}
 									title={`${toRead ? 'discard ' : 'books to read'}`}
-									onClick={() =>
+									onClick={() => {
 										toggleBook({ ...bookObj, readed: false, toRead: !bookObj.toRead })
-									}>
+										scrollCallback()
+									}}>
 									<AddToListToRead />
 								</button>
 							</div>

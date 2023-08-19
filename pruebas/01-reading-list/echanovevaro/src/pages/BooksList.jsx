@@ -1,8 +1,13 @@
 import React from 'react'
 
-export default function BooksList({ findBookById, booksReaded, booksToRead }) {
+export default function BooksList({
+	findBookById,
+	booksReaded,
+	booksToRead,
+	refProps,
+}) {
 	return (
-		<div className='item-d'>
+		<div className='item-d' ref={refProps}>
 			{booksReaded && booksReaded.length > 0 && (
 				<>
 					<p>{'books that I have read'.toUpperCase()}</p>
