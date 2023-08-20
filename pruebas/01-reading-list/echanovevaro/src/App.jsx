@@ -13,21 +13,18 @@ export default function App() {
 	const [book, setBook] = useState()
 	const [searchInput, setSearchInput] = useState('')
 	const [pages, setPages] = useState(1400)
-	const endRef = useRef()
 
-	useEffect(() => {
-		const readed = books.some((b) => b.readed)
-		const toRead = books.some((b) => b.toRead)
+	function onToggle(readed, toRead) {
 		if (readed || toRead) {
-			endRef.current?.scrollIntoView({
-				block: 'end',
-				behavior: 'smooth',
-			})
+			// endRef?.current?.scrollIntoView({
+			// 	block: 'end',
+			// 	behavior: 'smooth',
+			// })
+			window.scrollTo(0, document.body.scrollHeight)
 		} else {
 			window.scrollTo(0, 0)
 		}
-	}, [toggleBook])
-	// console.log('searchInput', searchInput)
+	}
 
 	const getGenres = () => {
 		return [...new Set(books.map((b) => b.book.genre))]
@@ -68,13 +65,14 @@ export default function App() {
 	function toggleBook(book) {
 		let nextBooks = books.filter((b) => b.book.ISBN !== book.book.ISBN)
 		setBooks([...nextBooks, book])
-		setBook(undefined)
+		console.log('bookToggle', book)
+		setBook({ ...book })
 	}
 
 	function findBookById(id) {
 		let bookById = books.find((b) => b.book.ISBN == id)
 		if (bookById) {
-			setBook(bookById)
+			setBook({ ...bookById, visible: true })
 		}
 	}
 
@@ -95,11 +93,16 @@ export default function App() {
 				book: b.book,
 				readed: false,
 				toRead: false,
+				visible: false,
 			}))
 			setBooks(booksMap)
 		}
 		startBooks()
 	}, [])
+
+	useEffect(() => {
+		if (book && !book.visible) onToggle(book.readed, book.toRead)
+	}, [book])
 
 	return (
 		<div>
@@ -119,13 +122,14 @@ export default function App() {
 						findBookById={findBookById}
 						pages={pages}
 					/>
-					{book && <BookDetail bookObj={book} toggleBook={toggleBook} />}
+					{book && book.visible && (
+						<BookDetail bookObj={book} toggleBook={toggleBook} />
+					)}
 					{books && (
 						<BooksList
 							findBookById={findBookById}
 							booksReaded={books.filter((b) => b.readed)}
 							booksToRead={books.filter((b) => b.toRead)}
-							refProps={endRef}
 						/>
 					)}
 				</div>

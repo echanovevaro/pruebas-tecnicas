@@ -19,7 +19,7 @@ export default function BooksDashboard({ books, findBookById }) {
 					))}
 			</ul>
 
-			<h4>Resultados: {books?.length}</h4>
+			<span> RESULTADOS: {books?.length}</span>
 		</div>
 	)
 }
