@@ -13,24 +13,21 @@ export default function App() {
 	const [book, setBook] = useState()
 	const [searchInput, setSearchInput] = useState('')
 	const [pages, setPages] = useState(1400)
+	const endRef = useRef()
 
-	const aboutRef = useRef()
-	const scrollCallback = () => {
-		if (aboutRef && !aboutRef?.current?.contains(document.activeElement)) {
-			aboutRef.current.scrollIntoView({
+	useEffect(() => {
+		const readed = books.some((b) => b.readed)
+		const toRead = books.some((b) => b.toRead)
+		if (readed || toRead) {
+			endRef.current?.scrollIntoView({
 				block: 'end',
 				behavior: 'smooth',
-				inline: 'end',
 			})
-		}
-	}
-	useEffect(() => {
-		if (toggleBook && aboutRef?.current) {
-			scrollCallback()
+		} else {
+			window.scrollTo(0, 0)
 		}
 	}, [toggleBook])
-
-	console.log('searchInput', searchInput)
+	// console.log('searchInput', searchInput)
 
 	const getGenres = () => {
 		return [...new Set(books.map((b) => b.book.genre))]
@@ -47,7 +44,6 @@ export default function App() {
 	}
 
 	const handleGenreSelect = (e) => {
-		console.log('entra', e.target.value)
 		const { value } = e.target
 		e.preventDefault()
 		setGenre(value)
@@ -118,26 +114,18 @@ export default function App() {
 						handleSearchValeChange={handleSearchValeChange}
 						genres={getGenres()}
 					/>
-
 					<BooksDashboard
 						books={applyFilters()}
 						findBookById={findBookById}
 						pages={pages}
 					/>
-
-					{book && (
-						<BookDetail
-							bookObj={book}
-							toggleBook={toggleBook}
-							scrollCallback={scrollCallback}
-						/>
-					)}
+					{book && <BookDetail bookObj={book} toggleBook={toggleBook} />}
 					{books && (
 						<BooksList
 							findBookById={findBookById}
 							booksReaded={books.filter((b) => b.readed)}
 							booksToRead={books.filter((b) => b.toRead)}
-							refProps={aboutRef}
+							refProps={endRef}
 						/>
 					)}
 				</div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { AddToListReaded, AddToListToRead } from '../components/Icons'
 
-export default function BookDetail({ bookObj, toggleBook, scrollCallback }) {
+export default function BookDetail({ bookObj, toggleBook, scrollCallbackEnd }) {
 	const { book, readed, toRead } = { ...bookObj }
 
 	return (
@@ -19,7 +19,6 @@ export default function BookDetail({ bookObj, toggleBook, scrollCallback }) {
 									title={`${readed ? 'discard ' : 'books readed'}`}
 									onClick={() => {
 										toggleBook({ ...bookObj, readed: !bookObj.readed, toRead: false })
-										scrollCallback()
 									}}>
 									<AddToListReaded />
 								</button>
@@ -29,7 +28,6 @@ export default function BookDetail({ bookObj, toggleBook, scrollCallback }) {
 									title={`${toRead ? 'discard ' : 'books to read'}`}
 									onClick={() => {
 										toggleBook({ ...bookObj, readed: false, toRead: !bookObj.toRead })
-										scrollCallback()
 									}}>
 									<AddToListToRead />
 								</button>

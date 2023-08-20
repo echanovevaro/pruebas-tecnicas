@@ -6,6 +6,7 @@ export default function BooksList({
 	booksToRead,
 	refProps,
 }) {
+	console.log('refProps', refProps)
 	return (
 		<div className='item-d' ref={refProps}>
 			{booksReaded && booksReaded.length > 0 && (

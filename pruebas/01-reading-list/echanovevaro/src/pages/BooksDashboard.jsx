@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function BooksDashboard({ books, findBookById, refProps }) {
+export default function BooksDashboard({ books, findBookById }) {
 	console.log('cuantos libros', books.length)
 	return (
-		<div className='item-b' ref={refProps}>
+		<div className='item-b'>
 			<ul className='container-dash'>
 				{books
 					.filter((b) => !b.readed && !b.toRead)
